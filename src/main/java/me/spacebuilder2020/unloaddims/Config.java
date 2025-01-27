@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package me.spacebuilder2020.unloaddims;
 
 import java.io.File;
 

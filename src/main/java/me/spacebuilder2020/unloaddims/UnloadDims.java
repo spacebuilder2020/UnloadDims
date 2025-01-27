@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package me.spacebuilder2020.unloaddims;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,13 +10,20 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = MyMod.MODID, version = Tags.VERSION, name = "MyMod", acceptedMinecraftVersions = "[1.7.10]")
-public class MyMod {
+@Mod(
+    modid = UnloadDims.MODID,
+    version = Tags.VERSION,
+    name = "UnloadDims",
+    acceptedMinecraftVersions = "[1.7.10]",
+    acceptableRemoteVersions = "*")
+public class UnloadDims {
 
-    public static final String MODID = "mymodid";
+    public static final String MODID = "unloaddims";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
-    @SidedProxy(clientSide = "com.myname.mymodid.ClientProxy", serverSide = "com.myname.mymodid.CommonProxy")
+    @SidedProxy(
+        clientSide = "me.spacebuilder2020.unloaddims.ClientProxy",
+        serverSide = "me.spacebuilder2020.unloaddims.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler
