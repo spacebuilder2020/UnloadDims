@@ -1,5 +1,8 @@
 package me.spacebuilder2020.unloaddims;
 
+import static me.spacebuilder2020.unloaddims.CommonProxy.chatConfirm;
+import static me.spacebuilder2020.unloaddims.CommonProxy.chatNotify;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,8 +11,6 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.FakePlayer;
@@ -50,26 +51,4 @@ public class CommandUnloadDims extends CommandBase implements ICommand {
 
     }
 
-    public void chatConfirm(ICommandSender sender, String message) {
-        sendMessage(sender, message, EnumChatFormatting.GREEN);
-    }
-
-    public void chatError(ICommandSender sender, String message) {
-        sendMessage(sender, message, EnumChatFormatting.RED);
-    }
-
-    public void chatWarning(ICommandSender sender, String message) {
-        sendMessage(sender, message, EnumChatFormatting.YELLOW);
-    }
-
-    public void chatNotify(ICommandSender sender, String message) {
-        sendMessage(sender, message, EnumChatFormatting.AQUA);
-    }
-
-    public void sendMessage(ICommandSender sender, String message, EnumChatFormatting color) {
-        ChatComponentText text = new ChatComponentText(message);
-        text.getChatStyle()
-            .setColor(color);
-        sender.addChatMessage(text);
-    }
 }

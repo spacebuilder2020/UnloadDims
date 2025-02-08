@@ -1,7 +1,10 @@
 package me.spacebuilder2020.unloaddims;
 
 import net.minecraft.command.CommandHandler;
+import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -25,7 +28,32 @@ public class CommonProxy {
 
     // register server commands in this event handler (Remove if not needed)
     public void serverStarting(FMLServerStartingEvent event) {
-        ((CommandHandler) MinecraftServer.getServer()
-            .getCommandManager()).registerCommand(new CommandUnloadDims());
+        CommandHandler handler = (CommandHandler) MinecraftServer.getServer()
+            .getCommandManager();
+        handler.registerCommand(new CommandUnloadDims());
+        handler.registerCommand(new CommandUnloadChunks());
+    }
+
+    public static void chatConfirm(ICommandSender sender, String message) {
+        sendMessage(sender, message, EnumChatFormatting.GREEN);
+    }
+
+    public static void chatError(ICommandSender sender, String message) {
+        sendMessage(sender, message, EnumChatFormatting.RED);
+    }
+
+    public static void chatWarning(ICommandSender sender, String message) {
+        sendMessage(sender, message, EnumChatFormatting.YELLOW);
+    }
+
+    public static void chatNotify(ICommandSender sender, String message) {
+        sendMessage(sender, message, EnumChatFormatting.AQUA);
+    }
+
+    public static void sendMessage(ICommandSender sender, String message, EnumChatFormatting color) {
+        ChatComponentText text = new ChatComponentText(message);
+        text.getChatStyle()
+            .setColor(color);
+        sender.addChatMessage(text);
     }
 }
